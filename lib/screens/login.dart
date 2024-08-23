@@ -27,15 +27,29 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Image.asset('assets/onboarding.jpg'),
           ),
           CustomButton(
-            text: "Google Sign In",
-            onPressed: () async {
-              bool res = await _authMethods.signInWithGoogle(context);
-              if (res) {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
-              }
-            },
-          ),
+  text: "Google Sign In",
+  onPressed: () 
+  //async
+   {
+     Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
+    //bool res = await _authMethods.signInWithGoogle(context);
+    // if (res) {
+    //   Navigator.push(
+    //     context,
+    //     MaterialPageRoute(builder: (context) => const HomeScreen()),
+    //   );
+    // } else {
+    //   // Optionally show an error message if sign-in failed
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(content: Text('Google Sign-In failed')),
+    //   );
+    // }
+  },
+),
+
         ],
       ),
     );
