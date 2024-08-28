@@ -1,0 +1,12 @@
+[33m3fcc83e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mbackup-branch[m[33m, [m[1;32mbackup[m[33m)[m HEAD@{0}: reset: moving to 3fcc83ebc193c38fe3bab64f343daffd444bd4e8
+[33m3fcc83e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mbackup-branch[m[33m, [m[1;32mbackup[m[33m)[m HEAD@{1}: reset: moving to HEAD
+[33m3fcc83e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mbackup-branch[m[33m, [m[1;32mbackup[m[33m)[m HEAD@{2}: checkout: moving from main to main
+[33m3fcc83e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mbackup-branch[m[33m, [m[1;32mbackup[m[33m)[m HEAD@{3}: reset: moving to 3fcc83e
+[33m1fa7b7c[m HEAD@{4}: reset: moving to 1fa7b7c
+[33m3fcc83e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mbackup-branch[m[33m, [m[1;32mbackup[m[33m)[m HEAD@{5}: reset: moving to HEAD~1
+[33m1fa7b7c[m HEAD@{6}: checkout: moving from aikansh to main
+[33ma026939[m[33m ([m[1;32maikansh[m[33m)[m HEAD@{7}: commit: 2 new features added
+[33m20af667[m HEAD@{8}: commit: recording and inventory screen
+[33m1fa7b7c[m HEAD@{9}: checkout: moving from main to aikansh
+[33m1fa7b7c[m HEAD@{10}: commit: 5km
+[33m3fcc83e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mbackup-branch[m[33m, [m[1;32mbackup[m[33m)[m HEAD@{11}: clone: from https://github.com/Vedanshi27vishu/EDS.git
