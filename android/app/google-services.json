@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "168017971217",
+    "project_id": "eds-sih",
+    "storage_bucket": "eds-sih.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168017971217:android:a274ef88fcc438aa5989b0",
+        "android_client_info": {
+          "package_name": "com.example.zoom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168017971217-e5s33br70b5u22t1te9mt2tto7j9idrh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2DJPw-hzmZUnJ4TobbURXdJNk6_nGJJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168017971217-e5s33br70b5u22t1te9mt2tto7j9idrh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
