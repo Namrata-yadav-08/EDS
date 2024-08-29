@@ -11,9 +11,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool _isLoading = false;
-    final List<String> _dropdownItems = ['Hindi/हिंदी', 'English', 'Malayalam/മലയാളം'];
+  final List<String> _dropdownItems = ['Hindi/हिंदी', 'English', 'Malayalam/മലയാളം'];
   String? _selectedTopValue;
-
 
   Future<void> _getCurrentLocation() async {
     setState(() {
@@ -68,238 +67,163 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _isLoading
-          ? Center(child: CircularProgressIndicator())
-          : SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                     Center(
-                child: IntrinsicWidth(
-                  child: DropdownButtonFormField<String>(
-                    
-                    decoration: InputDecoration(
-                      hintText: "Select Language",
-               
-                       border: InputBorder.none
-                       
-                    ),
-                    value: _selectedTopValue,
-                    items: _dropdownItems.map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        _selectedTopValue = newValue;
-                      });
-                    },
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Text(
+                  "साइन अप करें",
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.height * 0.06,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(192, 119, 33, 1.0),
                   ),
                 ),
               ),
-        
-              SizedBox(
-              height:MediaQuery.of(context).size.height*0.01,
-              ),
+              SizedBox(height: THelperFunctions.screenHeight() * 0.01),
               Center(
-                child: Text("साइन अप करें ", style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height*0.06,
-                  fontWeight: FontWeight.bold,
-                  color:Color.fromRGBO(192, 119, 33, 1.0)
-        
-                ),),
+                child: DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    hintText: "Select Language",
+                    border: InputBorder.none,
+                  ),
+                  value: _selectedTopValue,
+                  items: _dropdownItems.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedTopValue = newValue;
+                    });
+                  },
+                ),
               ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              SizedBox(height: THelperFunctions.screenHeight() * 0.02),
+              Form(
+                key: SignupController.signup,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("अधिकारी का नाम", style: TextStyle(fontSize: THelperFunctions.screenHeight() * 0.022)),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color.fromRGBO(187, 187, 187, 1.0), width: 1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: TextFormField(
+                        validator: (value) => Validator.validateText("Officer Name", value),
+                        controller: SignupController.Schoolname,
+                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 5.0), border: InputBorder.none),
+                      ),
+                    ),
+                    SizedBox(height: THelperFunctions.screenHeight() * 0.02),
+                    Text("प्राधिकरण का प्रकार", style: TextStyle(fontSize: THelperFunctions.screenHeight() * 0.022)),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color.fromRGBO(187, 187, 187, 1.0), width: 1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: TextFormField(
+                        validator: (value) => Validator.validateText("Authorization Type", value),
+                        controller: SignupController.firstname,
+                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 5.0), border: InputBorder.none),
+                      ),
+                    ),
+                    SizedBox(height: THelperFunctions.screenHeight() * 0.02),
+                    Text("कार्यालय का ई-मेल", style: TextStyle(fontSize: THelperFunctions.screenHeight() * 0.022)),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color.fromRGBO(187, 187, 187, 1.0), width: 1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: TextFormField(
+                        controller: SignupController.email,
+                        validator: (value) => Validator.validateEmail(value),
+                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 5.0), border: InputBorder.none),
+                      ),
+                    ),
+                    SizedBox(height: THelperFunctions.screenHeight() * 0.02),
+                    Text("पासवर्ड", style: TextStyle(fontSize: THelperFunctions.screenHeight() * 0.022)),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color.fromRGBO(187, 187, 187, 1.0), width: 1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: TextFormField(
+                        controller: SignupController.password,
+                        obscureText: true,
+                        obscuringCharacter: "*",
+                        validator: (value) => Validator.validatepassword(value),
+                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 5.0), border: InputBorder.none),
+                      ),
+                    ),
+                    SizedBox(height: THelperFunctions.screenHeight() * 0.02),
+                    Text("कार्यालय का फ़ोन नंबर", style: TextStyle(fontSize: THelperFunctions.screenHeight() * 0.022)),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color.fromRGBO(187, 187, 187, 1.0), width: 1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: TextFormField(
+                        controller: SignupController.phonenumber,
+                        validator: (value) => Validator.phonenumber(value),
+                        decoration: InputDecoration(contentPadding: EdgeInsets.only(left: 5.0), border: InputBorder.none),
+                      ),
+                    ),
+                    SizedBox(height: THelperFunctions.screenHeight() * 0.04),
                     Center(
-                      child: Text(
-                        "साइन अप करें",
-                        style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.height * 0.06,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(192, 119, 33, 1.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(192, 119, 33, 1.0),
+                          padding: EdgeInsets.symmetric(vertical: 14.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
                         ),
-                      ),
-                    ),
-                    SizedBox(height: THelperFunctions.screenHeight() * 0.01),
-                    Form(
-                      key: SignupController.signup,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "विद्यालय का नाम",
-                            style: TextStyle(
-                              fontSize: THelperFunctions.screenHeight() * 0.022,
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color.fromRGBO(187, 187, 187, 1.0),
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextFormField(
-                              validator: (value) =>
-                                  Validator.validateText("School Name", value),
-                              controller: SignupController.collegename,
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.only(left: 5.0),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: THelperFunctions.screenHeight() * 0.022),
-                          Text(
-                            "प्रधानाचार्य का नाम",
-                            style: TextStyle(
-                              fontSize: THelperFunctions.screenHeight() * 0.022,
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color.fromRGBO(187, 187, 187, 1.0),
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextFormField(
-                              validator: (value) =>
-                                  Validator.validateText("Principal Name", value),
-                              controller: SignupController.firstname,
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.only(left: 5.0),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: THelperFunctions.screenHeight() * 0.022),
-                          Text(
-                            "प्रधानाचार्य का ई-मेल",
-                            style: TextStyle(
-                              fontSize: THelperFunctions.screenHeight() * 0.022,
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color.fromRGBO(187, 187, 187, 1.0),
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextFormField(
-                              controller: SignupController.email,
-                              validator: (value) =>
-                                  Validator.validateEmail(value),
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.only(left: 5.0),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: THelperFunctions.screenHeight() * 0.022),
-                          Text(
-                            "पासवर्ड",
-                            style: TextStyle(
-                              fontSize: THelperFunctions.screenHeight() * 0.022,
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color.fromRGBO(187, 187, 187, 1.0),
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextFormField(
-                              controller: SignupController.password,
-                              obscureText: true,
-                              validator: (value) =>
-                                  Validator.validatepassword(value),
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.only(left: 5.0),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: THelperFunctions.screenHeight() * 0.022),
-                          Text(
-                            "फोन नंबर",
-                            style: TextStyle(
-                              fontSize: THelperFunctions.screenHeight() * 0.022,
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color.fromRGBO(187, 187, 187, 1.0),
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: TextFormField(
-                              controller: SignupController.phonenumber,
-                              validator: (value) =>
-                                  Validator.phonenumber(value),
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.only(left: 5.0),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: THelperFunctions.screenHeight() * 0.04),
-                          Center(
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Color.fromRGBO(187, 187, 187, 1.0),
-                                padding: EdgeInsets.symmetric(vertical: 14.0),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                              onPressed: () async {
-                                if (SignupController.signup.currentState
-                                    ?.validate() ?? false) {
-                                  if (SignupController.x == null ||
-                                      SignupController.ycoordinate == null) {
-                                    await _getCurrentLocation();
-                                  }
-                                  setState(() {
-                                    _isLoading = true;
-                                  });
-                                  await SignupController.signUpCall(
-                                    SignupController.email.text,
-                                    SignupController.password.text,
-                                    context,
-                                  );
-                                  setState(() {
-                                    _isLoading = false;
-                                  });
-                                }
-                              },
-                              child: Text(
+                        onPressed: () async {
+                          if (SignupController.signup.currentState?.validate() ?? false) {
+                            if (SignupController.x == null || SignupController.ycoordinate == null) {
+                              await _getCurrentLocation();
+                            }
+                            setState(() {
+                              _isLoading = true;
+                            });
+                            await SignupController.signUpcall(
+                              SignupController.email.text,
+                              SignupController.password.text,
+                              context,
+                            );
+                            setState(() {
+                              _isLoading = false;
+                            });
+                          }
+                        },
+                        child: _isLoading
+                            ? CircularProgressIndicator(color: Colors.white)
+                            : Text(
                                 "साइन अप करें",
-                                style: TextStyle(
-                                  fontSize: THelperFunctions.screenHeight() * 0.025,
-                                ),
+                                style: TextStyle(fontSize: THelperFunctions.screenHeight() * 0.025),
                               ),
-                            ),
-                          ),
-                        ],
                       ),
                     ),
+                    SizedBox(height: THelperFunctions.screenHeight() * 0.04),
                   ],
                 ),
               ),
-            ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              Center(
+                child: Image.asset("assets/Group 22.png"),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

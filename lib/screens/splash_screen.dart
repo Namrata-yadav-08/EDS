@@ -45,8 +45,7 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: FadeTransition(
         opacity: _animation!,
-        child: Center(
-          child: Image.asset('assets/splash_screen.png'),  // Replace with your image asset
+        child: Center(          child: Image.asset('assets/Group 3234.png'),  // Replace with your image asset
         ),
       ),
     );
