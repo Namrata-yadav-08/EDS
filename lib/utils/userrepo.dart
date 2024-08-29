@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:zoom/screens/splash_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:zoom/screens/home.dart';
 import 'package:zoom/screens/user_model.dart';
 
 class UserRepository {

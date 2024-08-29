@@ -1,17 +1,7 @@
-import 'package:flutter/material.dart';import 'package:get/get.dart';
-import 'package:zoom/resources/auth_method.dart';
-import 'package:zoom/screens/bottomnav.dart';
-import 'package:zoom/screens/home.dart';
-import 'package:zoom/screens/login.dart';
-import 'package:zoom/screens/signup.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:zoom/screens/splash_screen.dart';
 import 'package:zoom/utils/apptheme.dart';
-
-import 'package:zoom/resources/auth_method.dart';
-import 'package:zoom/screens/home.dart';
-import 'package:zoom/screens/login.dart';
-import 'package:zoom/utils/colors.dart';
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zoom/resources/auth_method.dart';
 import 'package:zoom/screens/home.dart';
 import 'package:zoom/widgets/custom_button.dart';
 
@@ -11,7 +10,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final AuthMethods _authMethods = AuthMethods();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

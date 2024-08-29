@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zoom/screens/home.dart';
 import 'package:zoom/screens/signup.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -43,6 +42,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF34495E),
       body: FadeTransition(
         opacity: _animation!,
         child: Center(          child: Image.asset('assets/Group 3234.png'),  // Replace with your image asset

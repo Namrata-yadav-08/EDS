@@ -132,7 +132,7 @@ class _MicrophoneScreenState extends State<MicrophoneScreen> {
       backgroundColor: Colors.white,
       body: Center(
         child: IconButton(
-          icon: _isRecording ? Image.asset("assets/Group 3206.png") : Image.asset("assets/black mic.png"),
+          icon: _isRecording ?Image.asset("assets/Group 3206 (2).png"): Image.asset("assets/Group 3206.png") ,
           onPressed: _isRecording ? _stopRecording : _startRecording,
         ),
       ),
