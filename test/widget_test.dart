@@ -8,6 +8,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:zoom/app.dart';
+
 import 'package:zoom/main.dart';
 
 void main() {

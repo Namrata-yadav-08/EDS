@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: backgroundColor,
         ),
-        home: API()
+        home: LoginScreen()
+
         //StreamBuilder(
         //   stream: AuthMethods().authChanges,
         //   builder: (context, snapshot) {

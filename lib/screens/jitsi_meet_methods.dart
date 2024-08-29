@@ -7,8 +7,12 @@ class JitsiMeetMethods {
 
   void createMeeting({
     required String roomName,
+<<<<<<< HEAD
    // required String displayName,
    // required String email,
+=======
+ 
+>>>>>>> 4e4d45d781d936fc925c862a62064afacec8c5b2
     bool isAudioMuted = false,
     bool isVideoMuted = false,
   }) async {
