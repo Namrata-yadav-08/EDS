@@ -5,13 +5,14 @@ import 'package:zoom/screens/Issue_screen.dart';
 import 'package:zoom/screens/Teacher_Attendence.dart';
 import 'package:zoom/screens/home.dart';
 import 'package:zoom/screens/inventory.dart';
-import 'package:zoom/screens/meeting.dart';
-import 'package:zoom/screens/signup.dart';
 import 'package:zoom/screens/user_model.dart';
 import 'package:zoom/utils/helper_functions.dart';
 
 class BottomNavBar extends StatefulWidget {
-  UserModel? user;
+  final UserModel user1; 
+
+  BottomNavBar({required this.user1});
+
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
 }
@@ -20,18 +21,17 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _page = 0;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
-  // Define your screens here
-  final List<Widget> _screens = [
-    HomeScreen(),
-    API(),
-    IssueScreen(),
-     SignUp(),
-     TeacherAttendance()
-  ];
-
   @override
   Widget build(BuildContext context) {
-    bool dark = THelperFunctions.isDarkMode(context);
+    THelperFunctions.isDarkMode(context);
+
+    final List<Widget> _screens = [
+      HomeScreen(),
+      API(),
+      IssueScreen(user: widget.user1), 
+       AddItemScreen(user: widget.user1),
+      TeacherAttendance()
+    ];
 
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
@@ -60,4 +60,3 @@ class _BottomNavBarState extends State<BottomNavBar> {
     );
   }
 }
-

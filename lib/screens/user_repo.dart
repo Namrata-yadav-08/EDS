@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:zoom/screens/home.dart';
+import 'package:zoom/screens/bottomnav.dart';
 import 'package:zoom/screens/user_model.dart';
 import 'package:zoom/utils/userrepo.dart';
 
@@ -42,7 +42,7 @@ class SignupController {
 
       // Navigate to NearbyUsersScreen
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => HomeScreen()));
+          MaterialPageRoute(builder: (context) => BottomNavBar(user1:user1!)));
 
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("User created successfully!")));

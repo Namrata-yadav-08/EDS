@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class THelperFunctions {
   static Color? getColor(String value) {
@@ -83,7 +82,6 @@ class THelperFunctions {
   static double screenWidth() {
      return MediaQuery.of(Get.context!).size.width;
 
-     return MediaQuery.of(Get.context!).size.height;
   }
 
   
