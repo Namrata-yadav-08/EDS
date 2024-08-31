@@ -1,8 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zoom/screens/AI_assisstance.dart';
 import 'package:zoom/screens/bottomnav.dart';
+import 'package:zoom/screens/joinmeet.dart';
+import 'package:zoom/screens/meeting.dart';
 import 'package:zoom/screens/splash_screen.dart';
 import 'package:zoom/utils/apptheme.dart';
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Virtual Classroom',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       initialRoute: '/',
+//       routes: {
+//         '/': (context) => MeetingScreen(),
+//         '/join-meeting': (context) => JoinMeetingScreen(),
+//       },
+//     );
+//   }
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,9 +35,16 @@ class MyApp extends StatelessWidget {
        themeMode: ThemeMode.system,
        theme: TAppTheme.lighttheme,
        darkTheme: TAppTheme.darktheme,  
-      
-       // home: SplashScreen()
+      // home:API(),
        home: SplashScreen(),
+       );}}
+
+
+
+
+
+
+       //home: SplashScreen(),
 //     return MaterialApp(
 //         debugShowCheckedModeBanner: false,
 //         title: 'Zoom clone',
@@ -42,7 +69,4 @@ class MyApp extends StatelessWidget {
 //         //   },
 //         // )
 //         );
-    );
-    
-  }
-}
+  

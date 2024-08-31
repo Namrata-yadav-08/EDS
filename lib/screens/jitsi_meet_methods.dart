@@ -1,17 +1,37 @@
-import 'package:flutter/material.dart';
+import 'dart:math';
 import 'package:jitsi_meet_flutter_sdk/jitsi_meet_flutter_sdk.dart';
+import 'package:zoom/resources/auth_method.dart';
+import 'package:zoom/resources/firestor_authmethods.dart';
+
 
 class JitsiMeetMethods {
-  final JitsiMeet _jitsiMeet = JitsiMeet();
-  final List<String> participants = [];
+  final AuthMethods _authMethods = AuthMethods();
+  final FirestoreMethods _firestoreMethods = FirestoreMethods();
+  final _jitsiMeet = JitsiMeet();
 
-  void createMeeting({
+  Future<String> createMeeting() async {
+    try {
+      var random = Random();
+      String roomName = (random.nextInt(10000000) + 10000000).toString();
+
+      _firestoreMethods.addToMeetingHistory(roomName);
+
+      return roomName;
+    } catch (error) {
+      print("Error creating meeting: $error");
+      return '';
+    }
+  }
+
+  Future<void> joinMeeting({
     required String roomName,
-    bool isAudioMuted = false,
-    bool isVideoMuted = false,
+    required bool isAudioMuted,
+    required bool isVideoMuted,
   }) async {
     try {
-      // Configure meeting options
+      String name = _authMethods.user.displayName ?? 'Guest';
+      String? email = _authMethods.user.email;
+
       var options = JitsiMeetConferenceOptions(
         serverURL: "https://meet.jit.si",
         room: roomName,
@@ -22,44 +42,17 @@ class JitsiMeetMethods {
         },
         featureFlags: {
           "unsaferoomwarning.enabled": false,
+          "welcomepage.enabled": false,
         },
         userInfo: JitsiMeetUserInfo(
-          // displayName: displayName,
-          // email: email,
+          displayName: name,
+          email: email,
         ),
       );
 
-      // Register event listeners directly using the new API
-     JitsiMeetEventListener(
-      conferenceJoined: (url) {
-        debugPrint("conferenceJoined: url: $url");
-      },
-
-      participantJoined: (email, name, role, participantId) {
-        debugPrint(
-          "participantJoined: email: $email, name: $name, role: $role, "
-              "participantId: $participantId",
-        );
-        participants.add(participantId!);
-      },
-
-      // chatMessageReceived: (senderId, message, isPrivate) {
-      //   debugPrint(
-      //     "chatMessageReceived: senderId: $senderId, message: $message, "
-      //         "isPrivate: $isPrivate",
-      //   );
-      // },
-
-      readyToClose: () {
-        debugPrint("readyToClose");
-      },
-    );
-
-      // Join the meeting
       await _jitsiMeet.join(options);
-
     } catch (error) {
-      debugPrint("Error: $error");
+      print("Error joining meeting: $error");
     }
   }
 }

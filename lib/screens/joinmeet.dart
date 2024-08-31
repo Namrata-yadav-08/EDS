@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+import 'package:zoom/screens/jitsi_meet_methods.dart';
+
+class JoinMeetingScreen extends StatefulWidget {
+  const JoinMeetingScreen({Key? key}) : super(key: key);
+
+  @override
+  _JoinMeetingScreenState createState() => _JoinMeetingScreenState();
+}
+
+class _JoinMeetingScreenState extends State<JoinMeetingScreen> {
+  final JitsiMeetMethods _jitsiMeetMethods = JitsiMeetMethods();
+  final TextEditingController _roomController = TextEditingController();
+  bool _isAudioMuted = true;
+  bool _isVideoMuted = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Meeting'),
+        backgroundColor: Color.fromRGBO(192, 119, 33, 1.0),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: _roomController,
+              decoration: InputDecoration(
+                labelText: 'Room ID',
+                border: OutlineInputBorder(),
+                
+              ),
+            ),
+            SizedBox(height: 16),
+            SwitchListTile(
+              activeColor:Color.fromRGBO(192, 119, 33, 1.0) ,
+              title: Text('Mute Audio'),
+              value: _isAudioMuted,
+              onChanged: (bool value) {
+                setState(() {
+                  _isAudioMuted = value;
+                });
+              },
+            ),
+            SwitchListTile(
+               activeColor:Color.fromRGBO(192, 119, 33, 1.0) ,
+              title: Text('Mute Video'),
+              value: _isVideoMuted,
+              onChanged: (bool value) {
+                setState(() {
+                  _isVideoMuted = value;
+                });
+              },
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+                  Color.fromRGBO(192, 119, 33, 1.0),
+                ),
+                minimumSize: MaterialStateProperty.all(
+                  Size(320, 50),
+                ),
+              ),
+              onPressed: () {
+                _jitsiMeetMethods.joinMeeting(
+                  roomName: _roomController.text,
+                  isAudioMuted: _isAudioMuted,
+                  isVideoMuted: _isVideoMuted,
+                );
+              },
+              child: Text('Join',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 15),),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _roomController.dispose();
+    super.dispose();
+  }
+}
