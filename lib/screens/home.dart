@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(192, 119, 33, 1.0),
         elevation: 0,
-        title: const Text('Meet & Chat'),
+        title: const Text('आभासी कक्षा', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
         centerTitle: true,
       ),
       body: pages[_page],

@@ -12,16 +12,16 @@ class TeacherAttendance extends StatelessWidget {
     // Sample data
     final List<Map<String, String>> teachers = [
       {
-        "name": "Anil Sharma",
-        "subject": "Maths",
+        "name": "अनिल शर्मा",
+        "subject": "गणित",
         "phone": "8829345678",
-        "image": "assets/T.jpeg"
+        "image": "assets/men.jpg"
       },
       {
-        "name": "Sita Gupta",
-        "subject": "English",
+        "name": "सीता गुप्ता",
+        "subject": "अंग्रेज़ी",
         "phone": "9928374650",
-        "image": "assets/T.jpeg"
+        "image": "assets/w.webp"
       },
       // Add more teacher data here
     ];
@@ -119,8 +119,8 @@ class TeacherAttendance extends StatelessWidget {
                                     ),
                                     child: Image.asset(
                                       teacher['image']!,
-                                      height: 74,
-                                      width: 74,
+                                      height: 80,
+                                      width: 80,
                                     ),
                                   ),
                                 ),
@@ -151,7 +151,7 @@ class TeacherAttendance extends StatelessWidget {
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                              padding: const EdgeInsets.only(left: 15, right: 15),
                               child: Container(
                                 height: 40,
                                 width: double.infinity,

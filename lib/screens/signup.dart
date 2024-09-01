@@ -59,28 +59,27 @@ class _SignUpState extends State<SignUp> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
+                height: THelperFunctions.screenHeight()*0.05,
                 width: double.infinity,
               ),
-              Center(
-                child: IntrinsicWidth(
-                  child: DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      hintText: "Select Language",
-                      border: InputBorder.none,
-                    ),
-                    value: _selectedTopValue,
-                    items: _dropdownItems.map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        _selectedTopValue = newValue;
-                      });
-                    },
+              IntrinsicWidth(
+                child: DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    hintText: "Select Language",
+                    border: InputBorder.none,
                   ),
+                  value: _selectedTopValue,
+                  items: _dropdownItems.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedTopValue = newValue;
+                    });
+                  },
                 ),
               ),
               SizedBox(
@@ -88,9 +87,9 @@ class _SignUpState extends State<SignUp> {
               ),
               Center(
                 child: Text(
-                  "साइन अप करें ",
+                  "साइन अप करें / Sign up",
                   style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.height * 0.06,
+                    fontSize: MediaQuery.of(context).size.height * 0.04,
                     fontWeight: FontWeight.bold,
                     color: Color.fromRGBO(192, 119, 33, 1.0),
                   ),
@@ -103,7 +102,7 @@ class _SignUpState extends State<SignUp> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "अधिकारी का नाम",
+                      "विद्यालय का नाम/Name of the school",
                       style: TextStyle(
                         fontSize: THelperFunctions.screenHeight() * 0.022,
                       ),
@@ -130,7 +129,7 @@ class _SignUpState extends State<SignUp> {
                       height: THelperFunctions.screenHeight() * 0.022,
                     ),
                     Text(
-                      "प्राधिकरण का प्रकार",
+                      "प्रधानाचार्य का नाम/Name of the Principal",
                       style: TextStyle(
                         fontSize: THelperFunctions.screenHeight() * 0.022,
                       ),
@@ -157,7 +156,7 @@ class _SignUpState extends State<SignUp> {
                       height: THelperFunctions.screenHeight() * 0.022,
                     ),
                     Text(
-                      "कार्यालय का ई-मेल",
+                      "प्रधानाचार्य का ई-मेल/E-mail of Principal",
                       style: TextStyle(
                         fontSize: THelperFunctions.screenHeight() * 0.022,
                       ),
@@ -183,7 +182,7 @@ class _SignUpState extends State<SignUp> {
                       height: THelperFunctions.screenHeight() * 0.022,
                     ),
                     Text(
-                      "पासवर्ड",
+                      "पासवर्ड/Password",
                       style: TextStyle(
                         fontSize: THelperFunctions.screenHeight() * 0.022,
                       ),
@@ -211,7 +210,7 @@ class _SignUpState extends State<SignUp> {
                       height: THelperFunctions.screenHeight() * 0.022,
                     ),
                     Text(
-                      "कार्यालय का फ़ोन नंबर",
+                      "कार्यालय का फ़ोन नंबर/Office phone number",
                       style: TextStyle(
                         fontSize: THelperFunctions.screenHeight() * 0.022,
                       ),
@@ -268,7 +267,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                         child: Center(
                           child: Text(
-                            "साइन अप करें",
+                            "साइन अप करें / Sign up",
                             style: TextStyle(
                               fontSize: THelperFunctions.screenHeight() * 0.02,
                               color: Colors.white,

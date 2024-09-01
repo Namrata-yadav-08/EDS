@@ -12,32 +12,40 @@ class SubjectScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Hii"),
+       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        backgroundColor: Color.fromRGBO(192, 119, 33, 1.0),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Center(
-              child: Text(
-                "विषय चुनें",
-                style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.06,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(192, 119, 33, 1.0),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              Center(
+                child: Text(
+                  "विषय चुनें",
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.height * 0.06,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(192, 119, 33, 1.0),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: Column(
-                children: [
-                  ..._buildSubjectContainers(),
-                ],
-              ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: Column(
+                  children: [
+                    ..._buildSubjectContainers(),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

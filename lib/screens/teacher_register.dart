@@ -28,11 +28,12 @@ class _TeacherRegisterState extends State<TeacherRegister> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: THelperFunctions.screenHeight()*0.05,),
               Center(
                 child: Text(
-                  "पंजीकरण करें",
+                  "पंजीकरण करें / Register Now",
                   style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.height * 0.06,
+                    fontSize: MediaQuery.of(context).size.height * 0.03,
                     fontWeight: FontWeight.bold,
                     color: Color.fromRGBO(192, 119, 33, 1.0),
                   ),
@@ -44,7 +45,7 @@ class _TeacherRegisterState extends State<TeacherRegister> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "शिक्षक का नाम",
+                      "शिक्षक का नाम/Teacher's Name",
                       style: TextStyle(
                         fontSize: THelperFunctions.screenHeight() * 0.022,
                       ),
@@ -65,7 +66,7 @@ class _TeacherRegisterState extends State<TeacherRegister> {
                     ),
                     SizedBox(height: THelperFunctions.screenHeight() * 0.02),
                     Text(
-                      "शिक्षक का विषय",
+                      "शिक्षक का विषय/Teacher's subject",
                       style: TextStyle(
                         fontSize: THelperFunctions.screenHeight() * 0.022,
                       ),
@@ -86,7 +87,7 @@ class _TeacherRegisterState extends State<TeacherRegister> {
                     ),
                     SizedBox(height: THelperFunctions.screenHeight() * 0.02),
                     Text(
-                      "कक्षा(1-5)",
+                      "कक्षा(1-5)/Class(1-5)",
                       style: TextStyle(
                         fontSize: THelperFunctions.screenHeight() * 0.022,
                       ),
@@ -107,7 +108,7 @@ class _TeacherRegisterState extends State<TeacherRegister> {
                     ),
                     SizedBox(height: THelperFunctions.screenHeight() * 0.02),
                     Text(
-                      "शिक्षक का फ़ोन नंबर",
+                      "शिक्षक का फ़ोन नंबर/Teacher's phone number",
                       style: TextStyle(
                         fontSize: THelperFunctions.screenHeight() * 0.022,
                       ),
@@ -142,7 +143,7 @@ class _TeacherRegisterState extends State<TeacherRegister> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 10,right: 10),
                           child: Text(
-                            "पंजीकरण करें",
+                            "पंजीकरण करें / Register Now",
                             style: TextStyle(
                                 fontSize: THelperFunctions.screenHeight() * 0.025,
                                 color: Colors.white),

@@ -23,19 +23,12 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      const Text(
-        'Start or join a meeting',
-        style: const TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
       Padding(
-        padding: const EdgeInsets.symmetric(vertical: 38.0),
-        child: Image.asset('assets/v.JPG'),
+        padding: const EdgeInsets.symmetric(vertical: 30.0),
+        child: Image.asset('assets/virtual.png'),
       ),
       CustomButton(
-          text: 'Create a meet',
+          text: 'कक्षा बनाएँ',
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => JoinMeetingScreen()));
@@ -44,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
         height: THelperFunctions.screenHeight() * 0.02,
       ),
       CustomButton(
-          text: 'Join a meet',
+          text: 'कक्षा में शामिल हों',
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => JoinMeetingScreen()));
