@@ -9,12 +9,6 @@ class TeacherRegister extends StatefulWidget {
 }
 
 class _TeacherRegisterState extends State<TeacherRegister> {
-  final List<String> _dropdownItems = [
-    'Hindi/हिंदी',
-    'English',
-    'Malayalam/മലയാളം'
-  ];
-  String? _selectedTopValue;
 
   @override
   Widget build(BuildContext context) {

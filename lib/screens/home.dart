@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:zoom/screens/joinmeet.dart';
 import 'package:zoom/screens/login.dart';
-import 'package:zoom/screens/meeting.dart';
-
-
+import 'package:zoom/screens/user_model.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final UserModel user1;
+  
+  HomeScreen({
+    required this.user1,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -14,15 +16,24 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _page = 0;
-  onPageChanged(int page) {
+
+  List<Widget> pages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    
+    pages = [
+      LoginScreen(user: widget.user1),
+     
+    ];
+  }
+
+  void onPageChanged(int page) {
     setState(() {
       _page = page;
     });
   }
-
-  List<Widget> pages = [
-   LoginScreen()
-  ];
 
   @override
   Widget build(BuildContext context) {

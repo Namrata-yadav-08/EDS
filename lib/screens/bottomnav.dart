@@ -26,7 +26,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     THelperFunctions.isDarkMode(context);
 
     final List<Widget> _screens = [
-      HomeScreen(),
+      HomeScreen(user1:widget.user1),
       API(),
       IssueScreen(user: widget.user1), 
        AddItemScreen(user: widget.user1),

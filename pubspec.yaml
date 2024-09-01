@@ -43,6 +43,7 @@ dependencies:
 
   # Custom and additional packages
   flutter_gemini: ^2.0.5
+  file_picker: ^8.0.7
 
 dev_dependencies:
   flutter_test:
