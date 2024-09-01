@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:zoom/screens/attendence.dart';
 import 'package:zoom/screens/teacher_register.dart';
 import 'package:zoom/utils/helper_functions.dart';

@@ -12,7 +12,6 @@ class AddItemScreen extends StatefulWidget {
 }
 
 class _AddItemScreenState extends State<AddItemScreen> {
-  final TextEditingController _itemNameController = TextEditingController();
   final TextEditingController _stationeryController = TextEditingController();
   final TextEditingController _uniformsController = TextEditingController();
   final TextEditingController _pulsesController = TextEditingController();
@@ -64,48 +63,37 @@ class _AddItemScreenState extends State<AddItemScreen> {
     }
   }
 
-  Future<void> _addItem() async {
-    final String itemName = _itemNameController.text.trim();
-    final int stationery = int.tryParse(_stationeryController.text.trim()) ?? 0;
-    final int uniforms = int.tryParse(_uniformsController.text.trim()) ?? 0;
-    final int pulses = int.tryParse(_pulsesController.text.trim()) ?? 0;
-    final int rice = int.tryParse(_riceController.text.trim()) ?? 0;
-    final int vegetables = int.tryParse(_vegetablesController.text.trim()) ?? 0;
-    final int wheat = int.tryParse(_wheatController.text.trim()) ?? 0;
+  Future<void> _updateQuantities() async {
+    Map<String, dynamic> updates = {};
 
-    if (itemName.isNotEmpty) {
+    if (_stationeryController.text.trim().isNotEmpty) {
+      updates['stationery'] = int.tryParse(_stationeryController.text.trim()) ?? _quantities['stationery'];
+    }
+    if (_uniformsController.text.trim().isNotEmpty) {
+      updates['uniforms'] = int.tryParse(_uniformsController.text.trim()) ?? _quantities['uniforms'];
+    }
+    if (_pulsesController.text.trim().isNotEmpty) {
+      updates['pulses'] = int.tryParse(_pulsesController.text.trim()) ?? _quantities['pulses'];
+    }
+    if (_riceController.text.trim().isNotEmpty) {
+      updates['rice'] = int.tryParse(_riceController.text.trim()) ?? _quantities['rice'];
+    }
+    if (_vegetablesController.text.trim().isNotEmpty) {
+      updates['vegetables'] = int.tryParse(_vegetablesController.text.trim()) ?? _quantities['vegetables'];
+    }
+    if (_wheatController.text.trim().isNotEmpty) {
+      updates['wheat'] = int.tryParse(_wheatController.text.trim()) ?? _quantities['wheat'];
+    }
+
+    if (updates.isNotEmpty) {
       try {
-        // Add the new item
-        await FirebaseFirestore.instance
-            .collection('Users')
-            .doc(widget.user.id)
-            .collection('inventory')
-            .add({
-          'item_name': itemName,
-          'stationery': stationery,
-          'uniforms': uniforms,
-          'pulses': pulses,
-          'rice': rice,
-          'vegetables': vegetables,
-          'wheat': wheat,
-        });
-
-        // Update quantities
         await FirebaseFirestore.instance
             .collection('Users')
             .doc(widget.user.id)
             .collection('inventory')
             .doc('quantities')
-            .set({
-          'stationery': FieldValue.increment(stationery),
-          'uniforms': FieldValue.increment(uniforms),
-          'pulses': FieldValue.increment(pulses),
-          'rice': FieldValue.increment(rice),
-          'vegetables': FieldValue.increment(vegetables),
-          'wheat': FieldValue.increment(wheat),
-        }, SetOptions(merge: true)); // Use merge to update existing document or create it if not exists
+            .update(updates); // Use update to replace the existing values
 
-        _itemNameController.clear();
         _stationeryController.clear();
         _uniformsController.clear();
         _pulsesController.clear();
@@ -113,71 +101,21 @@ class _AddItemScreenState extends State<AddItemScreen> {
         _vegetablesController.clear();
         _wheatController.clear();
 
-        // Show a success message
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Item added successfully')),
+          const SnackBar(content: Text('मात्रा सफलतापूर्वक अपडेट की गई')),
         );
 
-        // Fetch the updated quantities
         _fetchQuantities();
       } catch (e) {
-        print('Error adding item: $e');
+        print('Error updating quantities: $e');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error adding item')),
+          const SnackBar(content: Text('Error updating quantities')),
         );
       }
     } else {
-      // Show an error message if item name is empty
+      // Show a message if no fields are updated
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Item name cannot be empty')),
-      );
-    }
-  }
-
-  Future<void> _updateQuantities() async {
-    final int stationery = int.tryParse(_stationeryController.text.trim()) ?? 0;
-    final int uniforms = int.tryParse(_uniformsController.text.trim()) ?? 0;
-    final int pulses = int.tryParse(_pulsesController.text.trim()) ?? 0;
-    final int rice = int.tryParse(_riceController.text.trim()) ?? 0;
-    final int vegetables = int.tryParse(_vegetablesController.text.trim()) ?? 0;
-    final int wheat = int.tryParse(_wheatController.text.trim()) ?? 0;
-
-    try {
-      // Update quantities
-      await FirebaseFirestore.instance
-          .collection('Users')
-          .doc(widget.user.id)
-          .collection('inventory')
-          .doc('quantities')
-          .set({
-        'stationery': stationery,
-        'uniforms': uniforms,
-        'pulses': pulses,
-        'rice': rice,
-        'vegetables': vegetables,
-        'wheat': wheat,
-      }, SetOptions(merge: true));
-      
-
-      
-        _itemNameController.clear();
-        _stationeryController.clear();
-        _uniformsController.clear();
-        _pulsesController.clear();
-        _riceController.clear();
-        _vegetablesController.clear();
-        _wheatController.clear();
-      // Show a success message
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Quantities updated successfully')),
-      );
-
-      // Fetch the updated quantities
-      _fetchQuantities();
-    } catch (e) {
-      print('Error updating quantities: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-       const SnackBar(content: Text('Error updating quantities')),
+        const SnackBar(content: Text('No updates to apply')),
       );
     }
   }
@@ -187,8 +125,11 @@ class _AddItemScreenState extends State<AddItemScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor:Color.fromRGBO(192, 119, 33, 1.0) ,
-        title: const Text('सामग्री जोड़ें', style: TextStyle(fontSize: 20, color:Colors.white),),
+        backgroundColor: Color.fromRGBO(192, 119, 33, 1.0),
+        title: const Text(
+          'सामग्री जोड़ें',
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -196,26 +137,8 @@ class _AddItemScreenState extends State<AddItemScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15)
-                    ),
-                      color: Color(0xFFD9D9D9)),
-                  child: TextField(
-                    controller: _itemNameController,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(10),
-                      labelText: "सामग्री जोड़ें",hintStyle: TextStyle(fontSize: 15, color:Color.fromRGBO(192, 119, 33, 1.0), )),
-                      
-                  ),
-                ),
-              ),
               _buildQuantityContainer(
+                color: Color(0xFF34495E) ,
                 weight: false,
                 imagePath: "assets/boy-at-school-png-sale-boy-and-girl-boy-and-girl-500.png",
                 label: "यूनिफार्म",
@@ -223,61 +146,55 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 quantity: _quantities['uniforms']!,
               ),
               _buildQuantityContainer(
-                weight:true,
+                weight: true,
+                color: Color(0xFFD9D9D9), 
                 imagePath: "assets/rice-hd-png-rice-png-photos-1200.png",
                 label: "चावल",
                 controller: _riceController,
                 quantity: _quantities['rice']!,
               ),
               _buildQuantityContainer(
-                weight:true ,
+                
+                weight: true,
+                color: Color(0xFF34495E),
                 imagePath: "assets/flour-png-11553989035ynkldnd7ss.png",
                 label: "आटा",
                 controller: _wheatController,
                 quantity: _quantities['wheat']!,
               ),
               _buildQuantityContainer(
-                weight:true,
+                weight: true,
+                color:Color(0xFFD9D9D9), 
                 imagePath: "assets/purepng.com-vegetablespotatocarrotbowlvegetable-971524598571f93zl.png",
                 label: "सब्जी",
                 controller: _vegetablesController,
                 quantity: _quantities['vegetables']!,
               ),
               _buildQuantityContainer(
-                weight:false,
+                weight: false,
+                color: Color(0xFFD9D9D9),
                 imagePath: "assets/Clipart-paper-write-pen.png",
                 label: "लेखन सामग्री",
                 controller: _stationeryController,
                 quantity: _quantities['stationery']!,
               ),
               _buildQuantityContainer(
-                weight:true,
+                color: Color(0xFF34495E),
+                weight: true,
+                
                 imagePath: "assets/pulses-2274.png",
                 label: "दाल",
                 controller: _pulsesController,
                 quantity: _quantities['pulses']!,
               ),
-            const  SizedBox(height: 20),
+              const SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromRGBO(192, 119, 33, 1.0),
                   ),
-                  onPressed: _addItem,
-                  child: const Text(
-                    'सामग्री जोड़ें',
-                    style: TextStyle(fontSize: 15, color: Colors.white),
-                  ),
-                ),
-              ),
-            const  SizedBox(height: 20),
-              Center(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:  Color(0xFF34495E),
-                  ),
                   onPressed: _updateQuantities,
-                  child:const Text(
+                  child: const Text(
                     'मात्रा अपडेट करें',
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
@@ -291,6 +208,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
   }
 
   Widget _buildQuantityContainer({
+    required Color color,
     required String imagePath,
     required String label,
     required TextEditingController controller,
@@ -301,8 +219,8 @@ class _AddItemScreenState extends State<AddItemScreen> {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFFD9D9D9),
-          borderRadius: BorderRadius.circular(15.0), // Adjust the radius as needed
+          color: color,
+          borderRadius: BorderRadius.circular(15.0),
         ),
         child: Column(
           children: [
@@ -313,15 +231,15 @@ class _AddItemScreenState extends State<AddItemScreen> {
                   width: 70,
                   child: Image.asset(imagePath),
                 ),
-                weight?
-                Text(
-                  "$label ($quantity किलोग्राम)",
-                  style:const TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
-                ):
-                 Text(
-                  "$label ($quantity)",
-                  style:const TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
-                )
+                weight
+                    ? Text(
+                        "$label ($quantity किलोग्राम)",
+                        style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                      )
+                    : Text(
+                        "$label ($quantity)",
+                        style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                      ),
               ],
             ),
             TextField(

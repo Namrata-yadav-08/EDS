@@ -6,6 +6,7 @@ import 'package:zoom/screens/user_model.dart';
 import 'package:zoom/utils/helper_functions.dart';
 import 'package:zoom/widgets/custom_button.dart';
 
+// ignore: must_be_immutable
 class LoginScreen extends StatefulWidget {
   UserModel user;
    LoginScreen({
