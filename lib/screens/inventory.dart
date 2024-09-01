@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:zoom/screens/user_model.dart';
+import 'package:zoom/utils/helper_functions.dart';
 
 class AddItemScreen extends StatefulWidget {
   final UserModel user;
@@ -199,7 +200,6 @@ class _AddItemScreenState extends State<AddItemScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(15)
@@ -211,7 +211,6 @@ class _AddItemScreenState extends State<AddItemScreen> {
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.all(10),
                       labelText: "सामग्री जोड़ें",hintStyle: TextStyle(fontSize: 15, color:Color.fromRGBO(192, 119, 33, 1.0), )),
-                      
                   ),
                 ),
               ),
@@ -220,42 +219,42 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 imagePath: "assets/boy-at-school-png-sale-boy-and-girl-boy-and-girl-500.png",
                 label: "यूनिफार्म",
                 controller: _uniformsController,
-                quantity: _quantities['uniforms']!,
+                quantity: _quantities['uniforms']!, boxcolor: Color(0xFF34495E), tcolor: Colors.white,
+              ),
+                 _buildQuantityContainer(
+                weight:false,
+                imagePath: "assets/Clipart-paper-write-pen.png",
+                label: "लेखन सामग्री",
+                controller: _stationeryController,
+                quantity: _quantities['stationery']!, boxcolor: Color(0xFFD9D9D9), tcolor: Colors.black,
               ),
               _buildQuantityContainer(
                 weight:true,
                 imagePath: "assets/rice-hd-png-rice-png-photos-1200.png",
                 label: "चावल",
                 controller: _riceController,
-                quantity: _quantities['rice']!,
+                quantity: _quantities['rice']!, boxcolor: Color(0xFF34495E), tcolor: Colors.white,
               ),
               _buildQuantityContainer(
                 weight:true ,
-                imagePath: "assets/flour-png-11553989035ynkldnd7ss.png",
+                imagePath: "assets/atta1.png",
                 label: "आटा",
                 controller: _wheatController,
-                quantity: _quantities['wheat']!,
+                quantity: _quantities['wheat']!, boxcolor: Color(0xFFD9D9D9), tcolor: Colors.black,
               ),
               _buildQuantityContainer(
                 weight:true,
                 imagePath: "assets/purepng.com-vegetablespotatocarrotbowlvegetable-971524598571f93zl.png",
                 label: "सब्जी",
                 controller: _vegetablesController,
-                quantity: _quantities['vegetables']!,
-              ),
-              _buildQuantityContainer(
-                weight:false,
-                imagePath: "assets/Clipart-paper-write-pen.png",
-                label: "लेखन सामग्री",
-                controller: _stationeryController,
-                quantity: _quantities['stationery']!,
+                quantity: _quantities['vegetables']!, boxcolor: Color(0xFF34495E), tcolor: Colors.white,
               ),
               _buildQuantityContainer(
                 weight:true,
                 imagePath: "assets/pulses-2274.png",
                 label: "दाल",
                 controller: _pulsesController,
-                quantity: _quantities['pulses']!,
+                quantity: _quantities['pulses']!, boxcolor: Color(0xFFD9D9D9), tcolor: Colors.black,
               ),
             const  SizedBox(height: 20),
               Center(
@@ -296,16 +295,19 @@ class _AddItemScreenState extends State<AddItemScreen> {
     required TextEditingController controller,
     required int quantity,
     required bool weight,
+    required Color boxcolor,
+    required Color tcolor,
   }) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFFD9D9D9),
+          color: boxcolor,
           borderRadius: BorderRadius.circular(15.0), // Adjust the radius as needed
         ),
         child: Column(
           children: [
+            SizedBox(height: THelperFunctions.screenHeight()*0.02,),
             Row(
               children: [
                 Container(
@@ -316,11 +318,11 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 weight?
                 Text(
                   "$label ($quantity किलोग्राम)",
-                  style:const TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                  style:TextStyle(fontSize: 25, fontWeight: FontWeight.w600, color: tcolor ),
                 ):
                  Text(
                   "$label ($quantity)",
-                  style:const TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                  style:TextStyle(fontSize: 25, fontWeight: FontWeight.w600 , color: tcolor),
                 )
               ],
             ),
