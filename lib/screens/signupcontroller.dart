@@ -46,7 +46,7 @@ class SignupController {
           MaterialPageRoute(builder: (context) => BottomNavBar(user1: user1!,)));
 
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("User created successfully!")));
+          .showSnackBar(SnackBar(content: Text("उपयोगकर्ता सफलतापूर्वक बनाया गया!")));
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(e.message ?? "Authentication Error")));

@@ -28,6 +28,7 @@ class _APIState extends State<API> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text("सेतु बॉट", style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 25),),
         backgroundColor: Color.fromRGBO(192, 119, 33, 1.0),

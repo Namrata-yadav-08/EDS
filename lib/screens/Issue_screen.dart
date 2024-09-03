@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zoom/screens/bottomnav.dart';
 import 'package:zoom/screens/user_model.dart';
 import 'package:zoom/screens/voice_record.dart';
 import 'package:zoom/utils/helper_functions.dart';
@@ -14,6 +15,7 @@ class IssueScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor:Color.fromRGBO(192, 119, 33, 1.0) ,
         title: const Text('समस्या', style: TextStyle(fontSize: 20, color:Colors.white),),
@@ -26,8 +28,8 @@ class IssueScreen extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: (){
-                     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => MicrophoneScreen()));
+                     Navigator.push(
+        context, MaterialPageRoute(builder: (context) => MicrophoneScreen(user1:user)));
                   },
                   child: Container(
                     height: THelperFunctions.screenHeight() * 0.18,
@@ -53,7 +55,7 @@ class IssueScreen extends StatelessWidget {
                 InkWell(
                   onTap: (){
                      Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => MicrophoneScreen()));
+        context, MaterialPageRoute(builder: (context) => MicrophoneScreen(user1:user)));
                   },
                   child: Container(
                     height: THelperFunctions.screenHeight() * 0.18,

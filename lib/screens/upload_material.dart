@@ -180,7 +180,7 @@ class _FileUploadScreenState extends State<FileUploadScreen> {
         }
 
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return Center(child: Text('No materials uploaded yet.'));
+          return Center(child: Text('कोई सामग्री अभी तक अपलोड नहीं की गई है।'));
         }
 
         final materials = snapshot.data!.docs;

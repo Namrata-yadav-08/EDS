@@ -39,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Color.fromRGBO(192, 119, 33, 1.0),
         elevation: 0,
         title: const Text('आभासी कक्षा', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),

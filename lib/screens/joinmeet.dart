@@ -18,7 +18,8 @@ class _JoinMeetingScreenState extends State<JoinMeetingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Meeting'),
+        title: Text('कक्षा बनाएँ',style: TextStyle(fontSize:20, color:Colors.white),),
+        centerTitle: true,
         backgroundColor: Color.fromRGBO(192, 119, 33, 1.0),
       ),
       body: Padding(
@@ -28,7 +29,7 @@ class _JoinMeetingScreenState extends State<JoinMeetingScreen> {
             TextField(
               controller: _roomController,
               decoration: InputDecoration(
-                labelText: 'Room ID',
+                labelText: 'रूम आईडी',
                 border: OutlineInputBorder(),
                 
               ),
@@ -36,7 +37,7 @@ class _JoinMeetingScreenState extends State<JoinMeetingScreen> {
             SizedBox(height: 16),
             SwitchListTile(
               activeColor:Color.fromRGBO(192, 119, 33, 1.0) ,
-              title: Text('Mute Audio'),
+              title: Text('ऑडियो म्यूट करें'),
               value: _isAudioMuted,
               onChanged: (bool value) {
                 setState(() {
@@ -46,7 +47,7 @@ class _JoinMeetingScreenState extends State<JoinMeetingScreen> {
             ),
             SwitchListTile(
                activeColor:Color.fromRGBO(192, 119, 33, 1.0) ,
-              title: Text('Mute Video'),
+              title: Text('वीडियो म्यूट करें'),
               value: _isVideoMuted,
               onChanged: (bool value) {
                 setState(() {
@@ -71,7 +72,7 @@ class _JoinMeetingScreenState extends State<JoinMeetingScreen> {
                   isVideoMuted: _isVideoMuted,
                 );
               },
-              child: Text('Join',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 15),),
+              child: Text('जुड़ें',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 20),),
             ),
           ],
         ),

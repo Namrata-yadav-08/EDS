@@ -59,27 +59,29 @@ class _SignUpState extends State<SignUp> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: THelperFunctions.screenHeight()*0.05,
+                height: THelperFunctions.screenHeight()*0.02,
                 width: double.infinity,
               ),
-              IntrinsicWidth(
-                child: DropdownButtonFormField<String>(
-                  decoration: InputDecoration(
-                    hintText: "Select Language",
-                    border: InputBorder.none,
+              Center(
+                child: IntrinsicWidth(
+                  child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      hintText: "Select Language",
+                      border: InputBorder.none,
+                    ),
+                    value: _selectedTopValue,
+                    items: _dropdownItems.map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _selectedTopValue = newValue;
+                      });
+                    },
                   ),
-                  value: _selectedTopValue,
-                  items: _dropdownItems.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _selectedTopValue = newValue;
-                    });
-                  },
                 ),
               ),
               SizedBox(

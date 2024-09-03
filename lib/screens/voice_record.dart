@@ -6,9 +6,14 @@ import 'package:flutter_sound/flutter_sound.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:zoom/screens/bottomnav.dart';
+import 'package:zoom/screens/user_model.dart';
 
 class MicrophoneScreen extends StatefulWidget {
-  const MicrophoneScreen({super.key});
+  UserModel user1;
+   MicrophoneScreen({
+    required this.user1,
+    super.key});
 
   @override
   State<MicrophoneScreen> createState() => _MicrophoneScreenState();
@@ -73,7 +78,8 @@ class _MicrophoneScreenState extends State<MicrophoneScreen> {
         if (duration.inSeconds < 1) {
           // Recording is less than 1 second; show a message and do not upload
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Recording is too short to upload.')),
+            SnackBar(
+                content: Text('रिकॉर्डिंग अपलोड करने के लिए बहुत छोटी है')),
           );
           return;
         }
@@ -112,14 +118,18 @@ class _MicrophoneScreenState extends State<MicrophoneScreen> {
       String downloadUrl = await snapshot.ref.getDownloadURL();
 
       // Save metadata to Firestore in user-specific collection
-      await FirebaseFirestore.instance.collection('Users').doc(userId).collection('recordings').add({
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(userId)
+          .collection('recordings')
+          .add({
         'url': downloadUrl,
         'timestamp': DateTime.now(),
       });
 
       // Optionally, show a message to the user
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Recording uploaded successfully!')),
+        SnackBar(content: Text('रिकॉर्डिंग सफलतापूर्वक अपलोड हो गई!')),
       );
     } catch (e) {
       print('Failed to upload recording: $e');
@@ -129,10 +139,26 @@ class _MicrophoneScreenState extends State<MicrophoneScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:  AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => BottomNavBar(user1:widget.user1),
+  ),
+);
+          },
+        ),
+        backgroundColor: Color.fromRGBO(192, 119, 33, 1.0),
+      ),
       backgroundColor: Colors.white,
       body: Center(
         child: IconButton(
-          icon: _isRecording ?Image.asset("assets/Group 3206 (2).png"): Image.asset("assets/Group 3206.png") ,
+          icon: _isRecording
+              ? Image.asset("assets/Group 3206 (2).png")
+              : Image.asset("assets/Group 3206.png"),
           onPressed: _isRecording ? _stopRecording : _startRecording,
         ),
       ),

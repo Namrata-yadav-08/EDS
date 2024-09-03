@@ -53,11 +53,11 @@ class SubjectScreen extends StatelessWidget {
 
   List<Widget> _buildSubjectContainers() {
     final subjects = [
-      {"subject": "गणित", "image": 'assets/Group 22.png', "color": Color(0xFF34495E)},
-      {"subject": "हिंदी", "image": "assets/Group 22.png", "color": Color(0xFFD9D9D9)},
-      {"subject": "अंग्रेज़ी", "image": "assets/Group 22.png", "color": Color(0xFF34495E)},
-      {"subject": "विज्ञान", "image": "assets/Group 22.png", "color": Color(0xFFD9D9D9)},
-      {"subject": "सामाजिक विज्ञान", "image": "assets/Group 22.png", "color": Color(0xFF34495E)},
+      {"subject": "गणित", "image": 'assets/n1092870.png', "color": Color(0xFF34495E)},
+      {"subject": "हिंदी", "image": "assets/Beautiful Hindi Fonts.png", "color": Color(0xFFD9D9D9)},
+      {"subject": "अंग्रेज़ी", "image": "assets/image_processing20200424-23052-5wek6q.png", "color": Color(0xFF34495E)},
+      {"subject": "विज्ञान", "image": "assets/png-for-science-open-2000.png", "color": Color(0xFFD9D9D9)},
+      {"subject": "सामाजिक विज्ञान", "image": "assets/36-364429_social-clip-art-classroom-transprent-png-free-subject (1).png", "color": Color(0xFF34495E)},
     ];
 
     return subjects.map((subjectData) {
